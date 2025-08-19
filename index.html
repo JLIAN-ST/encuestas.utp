@@ -2,170 +2,127 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Encuesta Académica</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace que sea responsive -->
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
       background: #121212;
       color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
     }
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 1.8em;
-    }
-    form {
-      max-width: 600px;
-      margin: auto;
+    .container {
       background: #1e1e1e;
       padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
     }
-    .question {
-      margin-bottom: 20px;
-    }
-    label {
-      font-weight: bold;
-      cursor: pointer;
-      display: block;
-      margin-bottom: 8px;
-      font-size: 1em;
-    }
-    select, button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 5px;
-      border-radius: 5px;
-      border: none;
-      font-size: 1em;
-    }
+    h2 { text-align: center; margin-bottom: 20px; }
+    label { display: block; margin-top: 15px; }
     select {
-      background: #2b2b2b;
-      color: white;
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: none;
+      margin-top: 5px;
     }
     button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
       background: #4CAF50;
       color: white;
+      font-size: 16px;
       cursor: pointer;
-      font-size: 1.1em;
-      font-weight: bold;
     }
-    button:hover {
-      background: #45a049;
-    }
-
-    /* 📱 Estilo adaptable para móviles */
-    @media (max-width: 600px) {
-      body {
-        padding: 10px;
-      }
-      form {
-        padding: 15px;
-      }
-      h1 {
-        font-size: 1.5em;
-      }
-      label, select, button {
-        font-size: 0.95em;
-      }
-      button {
-        padding: 10px;
-      }
-    }
+    button:hover { background: #45a049; }
   </style>
 </head>
 <body>
-  <h1>Encuesta Académica</h1>
-  <form id="academicSurvey">
-    
-    <div class="question">
-      <label for="understanding">📘 ¿Comprendes con claridad los temas explicados en clase?</label>
-      <select id="understanding" name="understanding" required>
+  <div class="container">
+    <h2>📊 Encuesta Académica</h2>
+    <form id="academicSurvey">
+
+      <label>1️⃣ ¿Comprendes con claridad los temas explicados en clase?</label>
+      <select name="understanding" required>
         <option value="">Seleccione...</option>
         <option value="Sí, totalmente">Sí, totalmente</option>
         <option value="A veces">A veces</option>
         <option value="No mucho">No mucho</option>
       </select>
-    </div>
 
-    <div class="question">
-      <label for="task">📝 ¿Con qué frecuencia entregas tus tareas y proyectos dentro del plazo?</label>
-      <select id="task" name="task" required>
+      <label>2️⃣ 📝 ¿Con qué frecuencia entregas tus tareas y proyectos dentro del plazo?</label>
+      <select name="task" required>
         <option value="">Seleccione...</option>
         <option value="Siempre">Siempre</option>
         <option value="Casi siempre">Casi siempre</option>
         <option value="A veces">A veces</option>
         <option value="Nunca">Nunca</option>
       </select>
-    </div>
 
-    <div class="question">
-      <label for="grades">🎯 ¿Qué promedio de calificaciones sueles obtener?</label>
-      <select id="grades" name="grades" required>
+      <label>3️⃣ 🎯 ¿Qué promedio de calificaciones sueles obtener?</label>
+      <select name="grades" required>
         <option value="">Seleccione...</option>
         <option value="Menos de 11">Menos de 11</option>
         <option value="Entre 11 y 14">Entre 11 y 14</option>
         <option value="Entre 15 y 17">Entre 15 y 17</option>
         <option value="18 a más">18 a más</option>
       </select>
-    </div>
 
-    <div class="question">
-      <label for="hours">🕒 ¿Cuántas horas de estudio independiente realizas a la semana?</label>
-      <select id="hours" name="hours" required>
+      <label>4️⃣ 🕒 ¿Cuántas horas de estudio independiente realizas a la semana?</label>
+      <select name="hours" required>
         <option value="">Seleccione...</option>
         <option value="0–2 horas">0–2 horas</option>
         <option value="3–5 horas">3–5 horas</option>
         <option value="6–8 horas">6–8 horas</option>
         <option value="Más de 8 horas">Más de 8 horas</option>
       </select>
-    </div>
 
-    <div class="question">
-      <label for="application">🤔 ¿Con qué frecuencia aplicas lo aprendido en situaciones prácticas?</label>
-      <select id="application" name="application" required>
+      <label>5️⃣ 🤔 ¿Con qué frecuencia aplicas lo aprendido en situaciones prácticas?</label>
+      <select name="application" required>
         <option value="">Seleccione...</option>
         <option value="Siempre">Siempre</option>
         <option value="A menudo">A menudo</option>
         <option value="A veces">A veces</option>
         <option value="Nunca">Nunca</option>
       </select>
-    </div>
 
-    <button type="submit">Enviar</button>
-  </form>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
 
   <script>
-    document.getElementById("academicSurvey").addEventListener("submit", function(e) {
+    const form = document.getElementById("academicSurvey");
+
+    form.addEventListener("submit", function(e) {
       e.preventDefault();
 
-      const data = {
-        understanding: document.getElementById("understanding").value,
-        task: document.getElementById("task").value,
-        grades: document.getElementById("grades").value,
-        hours: document.getElementById("hours").value,
-        application: document.getElementById("application").value
-      };
+      const formData = new FormData(form);
 
-      fetch("https://script.google.com/macros/s/AKfycbwzjsUH1QcyLnKm6oThXbGRg0BR77P_L7dYm-CsD7MUKXwNWLwOyGT3Yb5tRy2v5LDTyA/exec", {
+      fetch("https://script.google.com/macros/s/AKfycbxH6vtfaCrTCKYBhDKDzFFSEL9_obs3F-ckpe5Ctl7WRny3GZ8CPoOjKU2wqN0RBjmvpQ/exec", {
         method: "POST",
-        body: JSON.stringify(data)
+        body: formData
       })
       .then(res => res.text())
       .then(response => {
-        alert("¡Gracias por responder! ✅");
-        document.getElementById("academicSurvey").reset();
+        alert("✅ ¡Gracias por tu respuesta!");
+        form.reset();
       })
       .catch(err => {
-        alert("Error al enviar la respuesta ❌: " + err);
+        alert("❌ Error al enviar: " + err);
       });
     });
   </script>
 </body>
 </html>
+>
 
 
