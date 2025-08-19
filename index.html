@@ -2,224 +2,128 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Encuesta de Autoevaluación Académica</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Encuesta Académica</title>
   <style>
     body {
-      background-color: white;
-      font-family: 'Titillium Web', sans-serif;
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f4f6f9;
     }
-    .survey-container {
-      max-width: 800px;
-      padding: 2rem;
-      margin: 0 auto;
-    }
-    .title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #2d3748;
+    h1 {
       text-align: center;
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
-    .subtitle {
-      text-align: center;
-      color: #4a5568;
-      margin-bottom: 2rem;
+    form {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
-    .question-container {
-      margin-bottom: 1rem;
-      background-color: white;
-      border-radius: 0.5rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      border-left: 4px solid #3b82f6;
+    .question {
+      margin-bottom: 20px;
     }
-    .question-header {
-      padding: 1.5rem;
+    label {
+      font-weight: bold;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: block;
+      margin-bottom: 5px;
     }
-    .question-header:hover {
-      background-color: #f8fafc;
+    select, input[type="number"], button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
     }
-    .question-icon {
-      width: 32px;
-      height: 32px;
-      margin-right: 1rem;
-      background-color: #3b82f6;
+    button {
+      background: #4CAF50;
       color: white;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-    .question-text {
-      font-weight: 600;
-      color: #1a202c;
-      font-size: 1.1rem;
-      flex-grow: 1;
-      margin-left: 0.5rem;
-    }
-    .arrow-icon {
-      transition: transform 0.3s ease;
-      color: #718096;
-    }
-    .options-container {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease;
-    }
-    .options-container.show {
-      max-height: 500px;
-    }
-    .radio-option {
-      margin: 0.5rem 0;
-      padding: 0.75rem 1.5rem;
+      border: none;
       cursor: pointer;
-      transition: all 0.2s ease;
+      border-radius: 5px;
     }
-    .radio-option:hover {
-      background-color: #f1f5f9;
-    }
-    .submit-btn {
-      background-color: #3b82f6;
-      transition: all 0.3s ease;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      width: 200px;
-    }
-    .submit-btn:hover {
-      background-color: #2563eb;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    button:hover {
+      background: #45a049;
     }
   </style>
 </head>
-<body class="min-h-screen p-4">
-  <div class="survey-container">
-    <h1 class="title">ENCUESTA DE AUTOEVALUACIÓN ACADÉMICA</h1>
-    <p class="subtitle">Haz clic en cada pregunta para ver las opciones de respuesta</p>
+<body>
+  <h1>Encuesta Académica</h1>
+  <form id="academicSurvey">
+    <div class="question">
+      <label for="understanding">¿Qué tan comprensible fue la clase?</label>
+      <select id="understanding" name="understanding" required>
+        <option value="">Seleccione...</option>
+        <option value="Muy comprensible">Muy comprensible</option>
+        <option value="Comprensible">Comprensible</option>
+        <option value="Poco comprensible">Poco comprensible</option>
+        <option value="Nada comprensible">Nada comprensible</option>
+      </select>
+    </div>
 
-    <form id="academicSurvey" action="https://script.google.com/macros/s/AKfycbxH6vtfaCrTCKYBhDKDzFFSEL9_obs3F-ckpe5Ctl7WRny3GZ8CPoOjKU2wqN0RBjmvpQ/exec" method="POST">
-      
-      <!-- Pregunta 1 -->
-      <div class="question-container">
-        <div class="question-header" onclick="toggleOptions(this)">
-          <span class="question-icon">1</span>
-          <div class="question-text">¿Comprendes con claridad los temas explicados en clase?</div>
-          <div class="arrow-icon">▼</div>
-        </div>
-        <div class="options-container">
-          <label class="radio-option flex items-center">
-            <input type="radio" name="understanding" value="sí" required>
-            <span class="ml-3">Sí, totalmente</span>
-          </label>
-          <label class="radio-option flex items-center">
-            <input type="radio" name="understanding" value="a veces" required>
-            <span class="ml-3">A veces</span>
-          </label>
-          <label class="radio-option flex items-center">
-            <input type="radio" name="understanding" value="no mucho" required>
-            <span class="ml-3">No mucho</span>
-          </label>
-        </div>
-      </div>
+    <div class="question">
+      <label for="task">¿La tarea fue clara?</label>
+      <select id="task" name="task" required>
+        <option value="">Seleccione...</option>
+        <option value="Sí">Sí</option>
+        <option value="No">No</option>
+      </select>
+    </div>
 
-      <!-- Pregunta 2 -->
-      <div class="question-container">
-        <div class="question-header" onclick="toggleOptions(this)">
-          <span class="question-icon">2</span>
-          <div class="question-text">¿Con qué frecuencia entregas tus tareas y proyectos dentro del plazo?</div>
-          <div class="arrow-icon">▼</div>
-        </div>
-        <div class="options-container">
-          <label class="radio-option flex items-center"><input type="radio" name="homework" value="siempre" required><span class="ml-3">Siempre</span></label>
-          <label class="radio-option flex items-center"><input type="radio" name="homework" value="casi siempre" required><span class="ml-3">Casi siempre</span></label>
-          <label class="radio-option flex items-center"><input type="radio" name="homework" value="a veces" required><span class="ml-3">A veces</span></label>
-          <label class="radio-option flex items-center"><input type="radio" name="homework" value="nunca" required><span class="ml-3">Nunca</span></label>
-        </div>
-      </div>
+    <div class="question">
+      <label for="grades">¿Cómo calificarías la dificultad de las evaluaciones?</label>
+      <select id="grades" name="grades" required>
+        <option value="">Seleccione...</option>
+        <option value="Fácil">Fácil</option>
+        <option value="Intermedia">Intermedia</option>
+        <option value="Difícil">Difícil</option>
+      </select>
+    </div>
 
-      <!-- Pregunta 3 -->
-      <div class="question-container">
-        <div class="question-header" onclick="toggleOptions(this)">
-          <span class="question-icon">3</span>
-          <div class="question-text">¿Qué promedio de calificaciones sueles obtener?</div>
-          <div class="arrow-icon">▼</div>
-        </div>
-        <div class="options-container">
-          <label class="radio-option flex items-center"><input type="radio" name="grades" value="menos de 11" required><span class="ml-3">Menos de 11</span></label>
-          <label class="radio-option flex items-center"><input type="radio" name="grades" value="entre 11 y 14" required><span class="ml-3">Entre 11 y 14</span></label>
-          <label class="radio-option flex items-center"><input type="radio" name="grades" value="entre 15 y 17" required><span class="ml-3">Entre 15 y 17</span></label>
-          <label class="radio-option flex items-center"><input type="radio" name="grades" value="18 a más" required><span class="ml-3">18 a más</span></label>
-        </div>
-      </div>
+    <div class="question">
+      <label for="hours">¿Cuántas horas estudiaste esta semana?</label>
+      <input type="number" id="hours" name="hours" min="0" required>
+    </div>
 
-      <!-- Pregunta 4 -->
-      <div class="question-container">
-        <div class="question-header" onclick="toggleOptions(this)">
-          <span class="question-icon">4</span>
-          <div class="question-text">¿Cuántas horas de estudio independiente realizas a la semana?</div>
-          <div class="arrow-icon">▼</div>
-        </div>
-        <div class="options-container">
-          <label class="radio-option flex items-center"><input type="radio" name="study_hours" value="0-2 horas" required><span class="ml-3">0-2 horas</span></label>
-          <label class="radio-option flex items-center"><input type="radio" name="study_hours" value="3-5 horas" required><span class="ml-3">3-5 horas</span></label>
-          <label class="radio-option flex items-center"><input type="radio" name="study_hours" value="6-8 horas" required><span class="ml-3">6-8 horas</span></label>
-          <label class="radio-option flex items-center"><input type="radio" name="study_hours" value="más de 8 horas" required><span class="ml-3">Más de 8 horas</span></label>
-        </div>
-      </div>
+    <div class="question">
+      <label for="application">¿Qué tan útil fue la aplicación de lo aprendido?</label>
+      <select id="application" name="application" required>
+        <option value="">Seleccione...</option>
+        <option value="Muy útil">Muy útil</option>
+        <option value="Útil">Útil</option>
+        <option value="Poco útil">Poco útil</option>
+        <option value="Nada útil">Nada útil</option>
+      </select>
+    </div>
 
-      <!-- Pregunta 5 -->
-      <div class="question-container">
-        <div class="question-header" onclick="toggleOptions(this)">
-          <span class="question-icon">5</span>
-          <div class="question-text">¿Con qué frecuencia aplicas lo aprendido en situaciones prácticas?</div>
-          <div class="arrow-icon">▼</div>
-        </div>
-        <div class="options-container">
-          <label class="radio-option flex items-center"><input type="radio" name="application" value="siempre" required><span class="ml-3">Siempre</span></label>
-          <label class="radio-option flex items-center"><input type="radio" name="application" value="a menudo" required><span class="ml-3">A menudo</span></label>
-          <label class="radio-option flex items-center"><input type="radio" name="application" value="a veces" required><span class="ml-3">A veces</span></label>
-          <label class="radio-option flex items-center"><input type="radio" name="application" value="nunca" required><span class="ml-3">Nunca</span></label>
-        </div>
-      </div>
-
-      <div class="flex justify-center mt-8">
-        <button type="submit" class="submit-btn px-6 py-3 rounded-lg text-white font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 mx-auto">
-          Enviar Encuesta
-        </button>
-      </div>
-    </form>
-  </div>
+    <button type="submit">Enviar</button>
+  </form>
 
   <script>
-    function toggleOptions(header) {
-      const container = header.parentElement;
-      const options = container.querySelector('.options-container');
-      const arrow = header.querySelector('.arrow-icon');
+    document.getElementById("academicSurvey").addEventListener("submit", function(e) {
+      e.preventDefault();
 
-      // Cierra todas las demás antes de abrir la actual
-      document.querySelectorAll('.options-container').forEach(el => {
-        if (el !== options) {
-          el.classList.remove('show');
-          el.previousElementSibling.querySelector('.arrow-icon').textContent = '▼';
-        }
+      const data = {
+        understanding: document.getElementById("understanding").value,
+        task: document.getElementById("task").value,
+        grades: document.getElementById("grades").value,
+        hours: document.getElementById("hours").value,
+        application: document.getElementById("application").value
+      };
+
+      fetch("https://script.google.com/macros/s/AKfycbwzjsUH1QcyLnKm6oThXbGRg0BR77P_L7dYm-CsD7MUKXwNWLwOyGT3Yb5tRy2v5LDTyA/exec", {
+        method: "POST",
+        body: JSON.stringify(data)
+      })
+      .then(res => res.text())
+      .then(response => {
+        alert("¡Gracias por responder! ✅");
+        document.getElementById("academicSurvey").reset();
+      })
+      .catch(err => {
+        alert("Error al enviar la respuesta ❌: " + err);
       });
-
-      // Alterna la actual
-      options.classList.toggle('show');
-      arrow.textContent = options.classList.contains('show') ? '▲' : '▼';
-    }
+    });
   </script>
 </body>
 </html>
+
