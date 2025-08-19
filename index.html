@@ -25,17 +25,12 @@
     }
     h2 { text-align: center; margin-bottom: 20px; }
     label { display: block; margin-top: 15px; }
-    select {
+    select, input {
       width: 100%;
       padding: 8px;
       border-radius: 6px;
       border: none;
       margin-top: 5px;
-      background: #2e2e2e;
-      color: #fff;
-    }
-    select:hover {
-      background: #3e3e3e;
     }
     button {
       margin-top: 20px;
@@ -56,16 +51,16 @@
     <h2>📊 Encuesta Académica</h2>
     <form id="academicSurvey">
 
-      <label for="understanding">1️⃣ ¿Comprendes con claridad los temas explicados en clase?</label>
-      <select name="understanding" id="understanding" required>
+      <label>1️⃣ ¿Comprendes con claridad los temas explicados en clase?</label>
+      <select name="understanding" required>
         <option value="">Seleccione...</option>
         <option value="Sí, totalmente">Sí, totalmente</option>
         <option value="A veces">A veces</option>
         <option value="No mucho">No mucho</option>
       </select>
 
-      <label for="task">2️⃣ 📝 ¿Con qué frecuencia entregas tus tareas y proyectos dentro del plazo?</label>
-      <select name="task" id="task" required>
+      <label>2️⃣ 📝 ¿Con qué frecuencia entregas tus tareas y proyectos dentro del plazo?</label>
+      <select name="task" required>
         <option value="">Seleccione...</option>
         <option value="Siempre">Siempre</option>
         <option value="Casi siempre">Casi siempre</option>
@@ -73,8 +68,8 @@
         <option value="Nunca">Nunca</option>
       </select>
 
-      <label for="grades">3️⃣ 🎯 ¿Qué promedio de calificaciones sueles obtener?</label>
-      <select name="grades" id="grades" required>
+      <label>3️⃣ 🎯 ¿Qué promedio de calificaciones sueles obtener?</label>
+      <select name="grades" required>
         <option value="">Seleccione...</option>
         <option value="Menos de 11">Menos de 11</option>
         <option value="Entre 11 y 14">Entre 11 y 14</option>
@@ -82,8 +77,8 @@
         <option value="18 a más">18 a más</option>
       </select>
 
-      <label for="hours">4️⃣ 🕒 ¿Cuántas horas de estudio independiente realizas a la semana?</label>
-      <select name="hours" id="hours" required>
+      <label>4️⃣ 🕒 ¿Cuántas horas de estudio independiente realizas a la semana?</label>
+      <select name="hours" required>
         <option value="">Seleccione...</option>
         <option value="0–2 horas">0–2 horas</option>
         <option value="3–5 horas">3–5 horas</option>
@@ -91,8 +86,8 @@
         <option value="Más de 8 horas">Más de 8 horas</option>
       </select>
 
-      <label for="application">5️⃣ 🤔 ¿Con qué frecuencia aplicas lo aprendido en situaciones prácticas?</label>
-      <select name="application" id="application" required>
+      <label>5️⃣ 🤔 ¿Con qué frecuencia aplicas lo aprendido en situaciones prácticas?</label>
+      <select name="application" required>
         <option value="">Seleccione...</option>
         <option value="Siempre">Siempre</option>
         <option value="A menudo">A menudo</option>
@@ -112,7 +107,7 @@
 
       const formData = new FormData(form);
 
-      fetch("https://script.google.com/macros/s/AKfycbx8g6RNfZ-3AN7lLRrwf9_h84YJMRdZrJM_k-2VLaO_ZXcMS8PTupIxcBTqV2-RmaAx/exec", {
+      fetch("https://script.google.com/macros/s/AKfycbzmmXtPDFvfxfcty5XJ42Z0SoiA74sYV_nS7sNLi7OofZ4B3e6tb39WdknwbeznX0rP/exec", {
         method: "POST",
         body: formData
       })
@@ -128,3 +123,4 @@
   </script>
 </body>
 </html>
+
