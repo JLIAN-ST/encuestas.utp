@@ -3,22 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Encuesta Académica</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace que sea responsive -->
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
-      background: #f4f6f9;
+      margin: 0;
+      padding: 20px;
+      background: #121212;
+      color: #fff;
     }
     h1 {
       text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.8em;
     }
     form {
-      max-width: 500px;
+      max-width: 600px;
       margin: auto;
-      background: white;
+      background: #1e1e1e;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
     }
     .question {
       margin-bottom: 20px;
@@ -27,71 +32,107 @@
       font-weight: bold;
       cursor: pointer;
       display: block;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
+      font-size: 1em;
     }
-    select, input[type="number"], button {
+    select, button {
       width: 100%;
-      padding: 8px;
+      padding: 12px;
       margin-top: 5px;
+      border-radius: 5px;
+      border: none;
+      font-size: 1em;
+    }
+    select {
+      background: #2b2b2b;
+      color: white;
     }
     button {
       background: #4CAF50;
       color: white;
-      border: none;
       cursor: pointer;
-      border-radius: 5px;
+      font-size: 1.1em;
+      font-weight: bold;
     }
     button:hover {
       background: #45a049;
+    }
+
+    /* 📱 Estilo adaptable para móviles */
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+      form {
+        padding: 15px;
+      }
+      h1 {
+        font-size: 1.5em;
+      }
+      label, select, button {
+        font-size: 0.95em;
+      }
+      button {
+        padding: 10px;
+      }
     }
   </style>
 </head>
 <body>
   <h1>Encuesta Académica</h1>
   <form id="academicSurvey">
+    
     <div class="question">
-      <label for="understanding">¿Qué tan comprensible fue la clase?</label>
+      <label for="understanding">📘 ¿Comprendes con claridad los temas explicados en clase?</label>
       <select id="understanding" name="understanding" required>
         <option value="">Seleccione...</option>
-        <option value="Muy comprensible">Muy comprensible</option>
-        <option value="Comprensible">Comprensible</option>
-        <option value="Poco comprensible">Poco comprensible</option>
-        <option value="Nada comprensible">Nada comprensible</option>
+        <option value="Sí, totalmente">Sí, totalmente</option>
+        <option value="A veces">A veces</option>
+        <option value="No mucho">No mucho</option>
       </select>
     </div>
 
     <div class="question">
-      <label for="task">¿La tarea fue clara?</label>
+      <label for="task">📝 ¿Con qué frecuencia entregas tus tareas y proyectos dentro del plazo?</label>
       <select id="task" name="task" required>
         <option value="">Seleccione...</option>
-        <option value="Sí">Sí</option>
-        <option value="No">No</option>
+        <option value="Siempre">Siempre</option>
+        <option value="Casi siempre">Casi siempre</option>
+        <option value="A veces">A veces</option>
+        <option value="Nunca">Nunca</option>
       </select>
     </div>
 
     <div class="question">
-      <label for="grades">¿Cómo calificarías la dificultad de las evaluaciones?</label>
+      <label for="grades">🎯 ¿Qué promedio de calificaciones sueles obtener?</label>
       <select id="grades" name="grades" required>
         <option value="">Seleccione...</option>
-        <option value="Fácil">Fácil</option>
-        <option value="Intermedia">Intermedia</option>
-        <option value="Difícil">Difícil</option>
+        <option value="Menos de 11">Menos de 11</option>
+        <option value="Entre 11 y 14">Entre 11 y 14</option>
+        <option value="Entre 15 y 17">Entre 15 y 17</option>
+        <option value="18 a más">18 a más</option>
       </select>
     </div>
 
     <div class="question">
-      <label for="hours">¿Cuántas horas estudiaste esta semana?</label>
-      <input type="number" id="hours" name="hours" min="0" required>
+      <label for="hours">🕒 ¿Cuántas horas de estudio independiente realizas a la semana?</label>
+      <select id="hours" name="hours" required>
+        <option value="">Seleccione...</option>
+        <option value="0–2 horas">0–2 horas</option>
+        <option value="3–5 horas">3–5 horas</option>
+        <option value="6–8 horas">6–8 horas</option>
+        <option value="Más de 8 horas">Más de 8 horas</option>
+      </select>
     </div>
 
     <div class="question">
-      <label for="application">¿Qué tan útil fue la aplicación de lo aprendido?</label>
+      <label for="application">🤔 ¿Con qué frecuencia aplicas lo aprendido en situaciones prácticas?</label>
       <select id="application" name="application" required>
         <option value="">Seleccione...</option>
-        <option value="Muy útil">Muy útil</option>
-        <option value="Útil">Útil</option>
-        <option value="Poco útil">Poco útil</option>
-        <option value="Nada útil">Nada útil</option>
+        <option value="Siempre">Siempre</option>
+        <option value="A menudo">A menudo</option>
+        <option value="A veces">A veces</option>
+        <option value="Nunca">Nunca</option>
       </select>
     </div>
 
@@ -126,4 +167,5 @@
   </script>
 </body>
 </html>
+
 
