@@ -44,6 +44,15 @@
       cursor: pointer;
     }
     button:hover { background: #45a049; }
+    .message {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 6px;
+      text-align: center;
+      display: none;
+    }
+    .success { background: #2e7d32; color: #fff; }
+    .error { background: #c62828; color: #fff; }
   </style>
 </head>
 <body>
@@ -96,28 +105,34 @@
       </select>
 
       <button type="submit">Enviar</button>
+      <div id="message" class="message"></div>
     </form>
   </div>
 
   <script>
     const form = document.getElementById("academicSurvey");
+    const messageBox = document.getElementById("message");
 
     form.addEventListener("submit", function(e) {
       e.preventDefault();
 
       const formData = new FormData(form);
 
-      fetch("https://script.google.com/macros/s/AKfycbwbrjoAOqbJIvmQJkvSXvI9XKbwwKgscGuycvtD6PEODvf3badZJ3D3sxA9AON6CUeI/exec", {
+      fetch("https://script.google.com/macros/s/AKfycby40AAg0MnIHLMZWP7U00vLtjQ0Oxvz23vmotfkckL7kTJ_1p3MhyeQmclYr5GpY6tceA/exec", {
         method: "POST",
         body: formData
       })
       .then(res => res.text())
       .then(response => {
-        alert("✅ ¡Gracias por tu respuesta!");
+        messageBox.style.display = "block";
+        messageBox.className = "message success";
+        messageBox.textContent = "✅ ¡Gracias por tu respuesta!";
         form.reset();
       })
       .catch(err => {
-        alert("❌ Error al enviar: " + err);
+        messageBox.style.display = "block";
+        messageBox.className = "message error";
+        messageBox.textContent = "❌ Error al enviar: " + err;
       });
     });
   </script>
