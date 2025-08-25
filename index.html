@@ -4,139 +4,166 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Encuesta Académica</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #121212;
+      background-color: #121212;
       color: #fff;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      height: 100vh;
       margin: 0;
     }
     .container {
-      background: #1e1e1e;
-      padding: 20px;
-      border-radius: 12px;
-      width: 90%;
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 15px;
       max-width: 500px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-    }
-    h2 { text-align: center; margin-bottom: 20px; }
-    label { display: block; margin-top: 15px; }
-    select, input {
       width: 100%;
-      padding: 8px;
-      border-radius: 6px;
-      border: none;
-      margin-top: 5px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
-    button {
-      margin-top: 20px;
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #fff;
+      font-family: 'Russo One', sans-serif; /* Estilo de letra similar a Dota 2 */
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    select {
       width: 100%;
       padding: 10px;
+      border-radius: 8px;
       border: none;
-      border-radius: 6px;
-      background: #4CAF50;
+      margin-bottom: 15px;
+      background: #fff;
+      color: #000;
+      font-size: 14px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 8px;
       color: white;
       font-size: 16px;
       cursor: pointer;
+      margin-top: 10px;
     }
-    button:hover { background: #45a049; }
-    .message {
-      margin-top: 15px;
-      padding: 10px;
-      border-radius: 6px;
+    button:disabled {
+      background-color: #888;
+      cursor: not-allowed;
+    }
+    .success-message {
       text-align: center;
-      display: none;
+      margin-top: 20px;
+      color: #4CAF50;
+      font-weight: bold;
     }
-    .success { background: #2e7d32; color: #fff; }
-    .error { background: #c62828; color: #fff; }
+    .icon {
+      font-size: 24px; /* Tamaño del ícono */
+      margin-right: 10px; /* Espacio entre el ícono y el texto */
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>📊 Encuesta Académica</h2>
-    <form id="academicSurvey">
-
-      <label>1️⃣ ¿Comprendes con claridad los temas explicados en clase?</label>
-      <select name="understanding" required>
-        <option value="">Seleccione...</option>
-        <option value="Sí, totalmente">Sí, totalmente</option>
-        <option value="A veces">A veces</option>
-        <option value="No mucho">No mucho</option>
+    <h2><i class="fas fa-poll icon"></i> Encuesta Académica</h2>
+    <form id="surveyForm">
+      <label>📚 ¿Comprendes con claridad los temas explicados en clase?</label>
+      <select name="question1" required>
+        <option value="">Selecciona una opción</option>
+        <option>Sí, totalmente</option>
+        <option>A veces</option>
+        <option>No mucho</option>
       </select>
 
-      <label>2️⃣ 📝 ¿Con qué frecuencia entregas tus tareas y proyectos dentro del plazo?</label>
-      <select name="task" required>
-        <option value="">Seleccione...</option>
-        <option value="Siempre">Siempre</option>
-        <option value="Casi siempre">Casi siempre</option>
-        <option value="A veces">A veces</option>
-        <option value="Nunca">Nunca</option>
+      <label>📝 ¿Con qué frecuencia entregas tus tareas y proyectos dentro del plazo?</label>
+      <select name="question2" required>
+        <option value="">Selecciona una opción</option>
+        <option>Siempre</option>
+        <option>Casi siempre</option>
+        <option>A veces</option>
+        <option>Nunca</option>
       </select>
 
-      <label>3️⃣ 🎯 ¿Qué promedio de calificaciones sueles obtener?</label>
-      <select name="grades" required>
-        <option value="">Seleccione...</option>
-        <option value="Menos de 11">Menos de 11</option>
-        <option value="Entre 11 y 14">Entre 11 y 14</option>
-        <option value="Entre 15 y 17">Entre 15 y 17</option>
-        <option value="18 a más">18 a más</option>
+      <label>🎯 ¿Qué promedio de calificaciones sueles obtener?</label>
+      <select name="question3" required>
+        <option value="">Selecciona una opción</option>
+        <option>Menos de 11</option>
+        <option>11 - 14</option>
+        <option>15 - 17</option>
+        <option>18 - 20</option>
       </select>
 
-      <label>4️⃣ 🕒 ¿Cuántas horas de estudio independiente realizas a la semana?</label>
-      <select name="hours" required>
-        <option value="">Seleccione...</option>
-        <option value="0–2 horas">0–2 horas</option>
-        <option value="3–5 horas">3–5 horas</option>
-        <option value="6–8 horas">6–8 horas</option>
-        <option value="Más de 8 horas">Más de 8 horas</option>
+      <label>⏰ ¿Cuántas horas de estudio independiente realizas a la semana?</label>
+      <select name="question4" required>
+        <option value="">Selecciona una opción</option>
+        <option>0–2 horas</option>
+        <option>3–5 horas</option>
+        <option>6–10 horas</option>
+        <option>Más de 10 horas</option>
       </select>
 
-      <label>5️⃣ 🤔 ¿Con qué frecuencia aplicas lo aprendido en situaciones prácticas?</label>
-      <select name="application" required>
-        <option value="">Seleccione...</option>
-        <option value="Siempre">Siempre</option>
-        <option value="A menudo">A menudo</option>
-        <option value="A veces">A veces</option>
-        <option value="Nunca">Nunca</option>
+      <label>🤔 ¿Con qué frecuencia aplicas lo aprendido en situaciones prácticas?</label>
+      <select name="question5" required>
+        <option value="">Selecciona una opción</option>
+        <option>Siempre</option>
+        <option>A veces</option>
+        <option>Rara vez</option>
+        <option>Nunca</option>
       </select>
 
-      <button type="submit">Enviar</button>
-      <div id="message" class="message"></div>
+      <button type="submit" id="submitBtn">Enviar Respuestas</button>
+      <div class="success-message" id="successMessage" style="display: none;">
+        ✅ ¡Gracias por tu respuesta!
+      </div>
     </form>
   </div>
 
   <script>
-    const form = document.getElementById("academicSurvey");
-    const messageBox = document.getElementById("message");
+    // Verificar si el formulario ya fue enviado
+    if (localStorage.getItem("formSubmitted") === "true") {
+      document.querySelector(".container").innerHTML = "<h2>✅ ¡Gracias por tu respuesta!</h2>";
+    }
 
-    form.addEventListener("submit", function(e) {
+    document.getElementById("surveyForm").addEventListener("submit", function(e) {
       e.preventDefault();
 
-      const formData = new FormData(form);
+      const form = e.target;
+      const data = new FormData(form);
+      const submitBtn = document.getElementById("submitBtn");
 
-      fetch("https://script.google.com/macros/s/AKfycby40AAg0MnIHLMZWP7U00vLtjQ0Oxvz23vmotfkckL7kTJ_1p3MhyeQmclYr5GpY6tceA/exec", {
+      // Cambiar el texto del botón y deshabilitarlo
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Enviando...";
+
+      fetch("https://script.google.com/macros/s/AKfycbzhOhprI4s4yAF7Vh__rx2Qolv-GNqulXnKeWaNdILVboz0pGM6Tbs5oM7Yk84jTHRN/exec", {
         method: "POST",
-        body: formData
+        body: data
       })
-      .then(res => res.text())
-      .then(response => {
-        messageBox.style.display = "block";
-        messageBox.className = "message success";
-        messageBox.textContent = "✅ ¡Gracias por tu respuesta!";
-        form.reset();
+      .then(response => response.text())
+      .then(result => {
+        document.getElementById("successMessage").style.display = "block";
+        localStorage.setItem("formSubmitted", "true"); // Marcar el formulario como enviado
+        submitBtn.disabled = true; // Bloquea el botón
+        form.querySelectorAll("select").forEach(select => select.disabled = true); // Bloquea selects
       })
-      .catch(err => {
-        messageBox.style.display = "block";
-        messageBox.className = "message error";
-        messageBox.textContent = "❌ Error al enviar: " + err;
+      .catch(error => {
+        alert("❌ Error al enviar la respuesta. Intenta de nuevo.");
+        console.error(error);
+        submitBtn.disabled = false; // Habilitar el botón nuevamente en caso de error
+        submitBtn.innerText = "Enviar Respuestas"; // Restablecer el texto del botón
       });
     });
   </script>
 </body>
 </html>
-
-
