@@ -44,15 +44,12 @@
       cursor: pointer;
     }
     button:hover { background: #45a049; }
-    .message {
-      margin-top: 15px;
-      padding: 10px;
-      border-radius: 6px;
+    .mensaje {
       text-align: center;
-      display: none;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #4CAF50;
     }
-    .success { background: #2e7d32; color: #fff; }
-    .error { background: #c62828; color: #fff; }
   </style>
 </head>
 <body>
@@ -104,14 +101,21 @@
         <option value="Nunca">Nunca</option>
       </select>
 
-      <button type="submit">Enviar</button>
-      <div id="message" class="message"></div>
+      <button type="submit" id="submitBtn">Enviar</button>
     </form>
+    <div class="mensaje" id="mensaje"></div>
   </div>
 
   <script>
     const form = document.getElementById("academicSurvey");
-    const messageBox = document.getElementById("message");
+    const mensaje = document.getElementById("mensaje");
+    const submitBtn = document.getElementById("submitBtn");
+
+    // Revisar si ya respondió
+    if (localStorage.getItem("encuestaRespondida") === "true") {
+      form.style.display = "none";
+      mensaje.textContent = "✅ Ya has enviado tu respuesta. ¡Gracias!";
+    }
 
     form.addEventListener("submit", function(e) {
       e.preventDefault();
@@ -124,19 +128,14 @@
       })
       .then(res => res.text())
       .then(response => {
-        messageBox.style.display = "block";
-        messageBox.className = "message success";
-        messageBox.textContent = "✅ ¡Gracias por tu respuesta!";
-        form.reset();
+        localStorage.setItem("encuestaRespondida", "true"); // guardar bloqueo
+        form.style.display = "none";
+        mensaje.textContent = "✅ ¡Gracias por tu respuesta!";
       })
       .catch(err => {
-        messageBox.style.display = "block";
-        messageBox.className = "message error";
-        messageBox.textContent = "❌ Error al enviar: " + err;
+        alert("❌ Error al enviar: " + err);
       });
     });
   </script>
 </body>
 </html>
-
-
