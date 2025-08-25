@@ -43,125 +43,56 @@
       font-size: 16px;
       cursor: pointer;
     }
-    button:hover { background: #45a049; }
-    .mensaje {
-      text-align: center;
-      margin-top: 20px;
-      font-weight: bold;
-      color: #4CAF50;
-    }
-    #dinoGame {
-      display: none;
-      text-align: center;
-      margin-top: 20px;
-    }
-    #dinoGame iframe {
-      width: 100%;
-      height: 400px;
-      border: none;
+    button:hover {
+      background: #45a049;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>📊 Encuesta Académica</h2>
-    <form id="academicSurvey">
-
-      <label>1️⃣ ¿Comprendes con claridad los temas explicados en clase?</label>
-      <select name="understanding" required>
-        <option value="">Seleccione...</option>
+    <h2>Encuesta Académica</h2>
+    <form id="surveyForm" action="https://script.google.com/macros/s/AKfycbx78S5zHHHIW1CWOcDNrPQgdkZkgtic_m3ofOrwZEvlMkQeGOML8UkQgIa06IKqo9H7Mw/exec" method="POST">
+      <label for="question1">📚 ¿Comprendes con claridad los temas explicados en clase?</label>
+      <select id="question1" name="question1">
         <option value="Sí, totalmente">Sí, totalmente</option>
         <option value="A veces">A veces</option>
         <option value="No mucho">No mucho</option>
       </select>
 
-      <label>2️⃣ 📝 ¿Con qué frecuencia entregas tus tareas y proyectos dentro del plazo?</label>
-      <select name="task" required>
-        <option value="">Seleccione...</option>
+      <label for="question2">📝 ¿Con qué frecuencia entregas tus tareas y proyectos dentro del plazo?</label>
+      <select id="question2" name="question2">
         <option value="Siempre">Siempre</option>
         <option value="Casi siempre">Casi siempre</option>
         <option value="A veces">A veces</option>
         <option value="Nunca">Nunca</option>
       </select>
 
-      <label>3️⃣ 🎯 ¿Qué promedio de calificaciones sueles obtener?</label>
-      <select name="grades" required>
-        <option value="">Seleccione...</option>
+      <label for="question3">🎯 ¿Qué promedio de calificaciones sueles obtener?</label>
+      <select id="question3" name="question3">
         <option value="Menos de 11">Menos de 11</option>
         <option value="Entre 11 y 14">Entre 11 y 14</option>
         <option value="Entre 15 y 17">Entre 15 y 17</option>
         <option value="18 a más">18 a más</option>
       </select>
 
-      <label>4️⃣ 🕒 ¿Cuántas horas de estudio independiente realizas a la semana?</label>
-      <select name="hours" required>
-        <option value="">Seleccione...</option>
+      <label for="question4">🕒 ¿Cuántas horas de estudio independiente realizas a la semana?</label>
+      <select id="question4" name="question4">
         <option value="0–2 horas">0–2 horas</option>
         <option value="3–5 horas">3–5 horas</option>
         <option value="6–8 horas">6–8 horas</option>
         <option value="Más de 8 horas">Más de 8 horas</option>
       </select>
 
-      <label>5️⃣ 🤔 ¿Con qué frecuencia aplicas lo aprendido en situaciones prácticas?</label>
-      <select name="application" required>
-        <option value="">Seleccione...</option>
+      <label for="question5">🤔 ¿Con qué frecuencia aplicas lo aprendido en situaciones prácticas?</label>
+      <select id="question5" name="question5">
         <option value="Siempre">Siempre</option>
         <option value="A menudo">A menudo</option>
         <option value="A veces">A veces</option>
         <option value="Nunca">Nunca</option>
       </select>
 
-      <button type="submit" id="submitBtn">Enviar</button>
+      <button type="submit">Enviar Respuestas</button>
     </form>
-    <div class="mensaje" id="mensaje"></div>
-    <div id="dinoGame">
-      <h3>🦖 ¡Juega al Dinosaurio!</h3>
-      <iframe src="https://chromedino.com/" title="Juego del Dinosaurio"></iframe>
-    </div>
   </div>
-
-  <script>
-    const form = document.getElementById("academicSurvey");
-    const mensaje = document.getElementById("mensaje");
-    const dinoGame = document.getElementById("dinoGame");
-    const submitBtn = document.getElementById("submitBtn");
-
-    // Revisar si ya respondió
-    if (localStorage.getItem("encuestaRespondida") === "true") {
-      form.style.display = "none";
-      mensaje.textContent = "✅ Ya has enviado tu respuesta. ¡Gracias!";
-      dinoGame.style.display = "block"; // Mostrar el juego
-    }
-
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      // Deshabilitar el botón para evitar múltiples envíos
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Enviando..."; // Cambiar el texto del botón
-
-      const formData = new FormData(form);
-
-      fetch("https://script.google.com/macros/s/AKfycby40AAg0MnIHLMZWP7U00vLtjQ0Oxvz23vmotfkckL7kTJ_1p3MhyeQmclYr5GpY6tceA/exec", {
-        method: "POST",
-        body: formData
-      })
-      .then(res => res.text())
-      .then(response => {
-        localStorage.setItem("encuestaRespondida", "true"); // guardar bloqueo
-        form.style.display = "none";
-        mensaje.textContent = "✅ ¡Gracias por tu respuesta!";
-        dinoGame.style.display = "block"; // Mostrar el juego
-      })
-      .catch(err => {
-        alert("❌ Error al enviar: " + err);
-      })
-      .finally(() => {
-        // Habilitar el botón nuevamente en caso de error
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Enviar"; // Restablecer el texto del botón
-      });
-    });
-  </script>
 </body>
 </html>
