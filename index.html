@@ -43,56 +43,100 @@
       font-size: 16px;
       cursor: pointer;
     }
-    button:hover {
-      background: #45a049;
+    button:hover { background: #45a049; }
+    .message {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 6px;
+      text-align: center;
+      display: none;
     }
+    .success { background: #2e7d32; color: #fff; }
+    .error { background: #c62828; color: #fff; }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>Encuesta Académica</h2>
-    <form id="surveyForm" action="https://script.google.com/macros/s/AKfycbxPpRznQ8KYSLwfrvksbMV3kiyRxGpcyT58t2hiUPzVl6DUyA43fF4S322eZcdhw2iRkA/exec" method="POST">
-      <label for="question1">📚 ¿Comprendes con claridad los temas explicados en clase?</label>
-      <select id="question1" name="question1">
+    <h2>📊 Encuesta Académica</h2>
+    <form id="academicSurvey">
+
+      <label>1️⃣ ¿Comprendes con claridad los temas explicados en clase?</label>
+      <select name="understanding" required>
+        <option value="">Seleccione...</option>
         <option value="Sí, totalmente">Sí, totalmente</option>
         <option value="A veces">A veces</option>
         <option value="No mucho">No mucho</option>
       </select>
 
-      <label for="question2">📝 ¿Con qué frecuencia entregas tus tareas y proyectos dentro del plazo?</label>
-      <select id="question2" name="question2">
+      <label>2️⃣ 📝 ¿Con qué frecuencia entregas tus tareas y proyectos dentro del plazo?</label>
+      <select name="task" required>
+        <option value="">Seleccione...</option>
         <option value="Siempre">Siempre</option>
         <option value="Casi siempre">Casi siempre</option>
         <option value="A veces">A veces</option>
         <option value="Nunca">Nunca</option>
       </select>
 
-      <label for="question3">🎯 ¿Qué promedio de calificaciones sueles obtener?</label>
-      <select id="question3" name="question3">
+      <label>3️⃣ 🎯 ¿Qué promedio de calificaciones sueles obtener?</label>
+      <select name="grades" required>
+        <option value="">Seleccione...</option>
         <option value="Menos de 11">Menos de 11</option>
         <option value="Entre 11 y 14">Entre 11 y 14</option>
         <option value="Entre 15 y 17">Entre 15 y 17</option>
         <option value="18 a más">18 a más</option>
       </select>
 
-      <label for="question4">🕒 ¿Cuántas horas de estudio independiente realizas a la semana?</label>
-      <select id="question4" name="question4">
+      <label>4️⃣ 🕒 ¿Cuántas horas de estudio independiente realizas a la semana?</label>
+      <select name="hours" required>
+        <option value="">Seleccione...</option>
         <option value="0–2 horas">0–2 horas</option>
         <option value="3–5 horas">3–5 horas</option>
         <option value="6–8 horas">6–8 horas</option>
         <option value="Más de 8 horas">Más de 8 horas</option>
       </select>
 
-      <label for="question5">🤔 ¿Con qué frecuencia aplicas lo aprendido en situaciones prácticas?</label>
-      <select id="question5" name="question5">
+      <label>5️⃣ 🤔 ¿Con qué frecuencia aplicas lo aprendido en situaciones prácticas?</label>
+      <select name="application" required>
+        <option value="">Seleccione...</option>
         <option value="Siempre">Siempre</option>
         <option value="A menudo">A menudo</option>
         <option value="A veces">A veces</option>
         <option value="Nunca">Nunca</option>
       </select>
 
-      <button type="submit">Enviar Respuestas</button>
+      <button type="submit">Enviar</button>
+      <div id="message" class="message"></div>
     </form>
   </div>
+
+  <script>
+    const form = document.getElementById("academicSurvey");
+    const messageBox = document.getElementById("message");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+
+      fetch("https://script.google.com/macros/s/AKfycby40AAg0MnIHLMZWP7U00vLtjQ0Oxvz23vmotfkckL7kTJ_1p3MhyeQmclYr5GpY6tceA/exec", {
+        method: "POST",
+        body: formData
+      })
+      .then(res => res.text())
+      .then(response => {
+        messageBox.style.display = "block";
+        messageBox.className = "message success";
+        messageBox.textContent = "✅ ¡Gracias por tu respuesta!";
+        form.reset();
+      })
+      .catch(err => {
+        messageBox.style.display = "block";
+        messageBox.className = "message error";
+        messageBox.textContent = "❌ Error al enviar: " + err;
+      });
+    });
+  </script>
 </body>
 </html>
+
+
